@@ -13,7 +13,7 @@ public class Player extends JPanel {
     private int y = 300;
     private int imageIndex = 4;
     private String direction;
-    private int speed = 12;
+    private int speed = 16;
     private int spriteCounter = 0;
     private int spritePosition = 1;
 
@@ -21,6 +21,7 @@ public class Player extends JPanel {
         setFocusable(true);
         image = new ImageIcon(getClass().getResource("/br/com/game/resources/sprite-sheet.png"));
         addKeyListener(new KeyListener() {
+
             @Override
             public void keyTyped(KeyEvent e) {
             }
@@ -51,40 +52,76 @@ public class Player extends JPanel {
 
                 spriteCounter++;
 
-                if (spriteCounter <= 3) {
-
+                if (spriteCounter <= 4) {
+                    if (spriteCounter == 1) {
+                        spritePosition = 1;
+                    } else if (spriteCounter == 2) {
+                        spritePosition = 2;
+                    } else if (spriteCounter == 3) {
+                        spritePosition = 3;
+                        spriteCounter = 0;
+                    } else {
+                        spritePosition = 1;
+                        spriteCounter = 0;
+                    }
 
                 }
 
                 switch (direction) {
                     case "up":
-                        if (spritePosition == 1) { //Posição a direita
+                        if (spritePosition == 1) { // Posição a direita
                             imageIndex = 6;
                         }
-                        if (spritePosition == 2) { //Posição a esquerda
+                        if (spritePosition == 2) { // Posição a esquerda
                             imageIndex = 8;
                         }
-                        if (spritePosition == 3) { //Posição parado
+                        if (spritePosition == 3) { // Posição parado
                             imageIndex = 7;
                         }
                         break;
 
                     case "down":
-                        imageIndex = 4;
+                        if (spritePosition == 1) { // Posição a direita
+                            imageIndex = 3;
+                        }
+                        if (spritePosition == 2) { // Posição a esquerda
+                            imageIndex = 5;
+                        }
+                        if (spritePosition == 3) { // Posição parado
+                            imageIndex = 4;
+                        }
                         break;
 
                     case "left":
-                        imageIndex = 1;
+                        if (spritePosition == 1) { // Posição a direita
+                            imageIndex = 0;
+                        }
+                        if (spritePosition == 2) { // Posição a esquerda
+                            imageIndex = 2;
+                        }
+                        if (spritePosition == 3) { // Posição parado
+                            imageIndex = 1;
+                        }
                         break;
 
                     case "right":
-                        imageIndex = 10;
+                        if (spritePosition == 1) { // Posição a direita
+                            imageIndex = 9;
+                        }
+                        if (spritePosition == 2) { // Posição a esquerda
+                            imageIndex = 11;
+                        }
+                        if (spritePosition == 3) { // Posição parado
+                            imageIndex = 10;
+                        }
                         break;
 
                 }
 
-                //repaint();
+                repaint();
+
             }
+
         });
 
     }
